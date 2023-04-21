@@ -1,0 +1,23 @@
+{% extends 'layout.html' %}
+{% block content %}
+  {% if not loggedout %}
+  <h1>Home</h1>
+  <form method="POST">
+    {{ form.csrf_token }}
+    <div class="form-group">
+      {{ form.url.label }}
+      {{ form.url(class="form-control") }}
+      {% if form.url.errors %}
+        <ul class="errors">
+          {% for error in form.url.errors %}
+            <li>{{ error }}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+  {% else %}
+  <h1>please log in</h1>
+  {% endif %}
+{% endblock %}

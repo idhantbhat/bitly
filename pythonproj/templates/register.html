@@ -1,0 +1,39 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<div class="MarginRight">
+    <h1>Register</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class="flashes">
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
+    <form method="POST" action="{{ url_for('register') }}" novalidate>
+        {{ form.hidden_tag() }}
+
+        <div class="form-group">
+            <label for="{{ form.email.id }}">Email</label>
+            <input type="text" class="form-control" id="{{ form.email.id }}" name="{{ form.email.name }}"
+                   placeholder="Enter email" required>
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.password.id }}">Password</label>
+            <input type="password" class="form-control" id="{{ form.password.id }}" name="{{ form.password.name }}"
+                   placeholder="Enter password" required>
+        </div>
+
+        <div class="form-group">
+            <label for="{{ form.confirm_password.id }}">Confirm Password</label>
+            <input type="password" class="form-control" id="{{ form.confirm_password.id }}"
+                   name="{{ form.confirm_password.name }}" placeholder="Confirm password" required>
+        </div>
+
+        <button type="submit" class="btn-lg btn-primary">Sign Up</button>
+    </form>
+</div>
+{% endblock %}
